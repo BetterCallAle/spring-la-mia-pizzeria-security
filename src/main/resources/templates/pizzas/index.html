@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -43,11 +43,11 @@
                         <a th:href="@{|/pizzas/*{id}|}" class="btn btn-danger">
                             <i class="fa-solid fa-pizza-slice"></i>
                         </a>
-                        <a th:href="@{|/pizzas/edit/*{id}|}" class="btn btn-danger">
+                        <a th:href="@{|/pizzas/edit/*{id}|}" class="btn btn-danger" sec:authorize="hasAuthority('ADMIN')">
                             <i class="fa-solid fa-pencil"></i>
                         </a>
 
-                        <form class="d-inline" th:action="@{|/pizzas/delete/*{id}|}" method="POST">
+                        <form class="d-inline" th:action="@{|/pizzas/delete/*{id}|}" method="POST" sec:authorize="hasAuthority('ADMIN')">
                             <button type="submit" class="btn btn-danger">
                                 <i class="fa-solid fa-trash"></i>
                             </button>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <th:block th:fragment="resources(title)">
         <!--Bootstrap-->
@@ -36,15 +36,17 @@
                             <a th:href="@{'/pizzas/advanced-search'}" th:classAppend="${link == 'advanced-search'} ? 'my-active' : 'not-active' " class="nav-link">Ricerca avanzata</a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="@{'/pizzas/create'}" th:classAppend="${link == 'add-pizza'} ? 'my-active' : 'not-active' " class="nav-link">Aggiungi una pizza</a>
+                            <a th:href="@{'/pizzas/create'}" th:classAppend="${link == 'add-pizza'} ? 'my-active' : 'not-active' " class="nav-link" sec:authorize="hasAuthority('ADMIN')">Aggiungi una pizza</a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="@{'/ingredients'}" th:classAppend="${link == 'ingredients'} ? 'my-active' : 'not-active' " class="nav-link">Ingredienti</a>
+                            <a th:href="@{'/ingredients'}" th:classAppend="${link == 'ingredients'} ? 'my-active' : 'not-active' " class="nav-link" sec:authorize="hasAuthority('ADMIN')">Ingredienti</a>
                         </li>
                     </ul>
                 </div>
+                <!--Logout-->
+                <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
                 <!--Search-->
-                <form method="GET" th:action="@{/pizzas}" class="d-flex justify-self-end" role="search" th:if="${searchBar}">
+                <form method="GET" th:action="@{/pizzas}" class="d-flex justify-self-end ms-2" role="search" th:if="${searchBar}">
                     <input class="form-control me-1" type="search" placeholder="Cerca una pizza" aria-label="Search" name="s" th:value="${search}">
                     <button class="btn btn-outline-danger" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>

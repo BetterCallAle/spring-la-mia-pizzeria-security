@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -22,7 +22,7 @@
 
         <!--Special offers-->
         <div class="mt-2">
-            <a class="btn btn-danger" th:href="@{/special-offer/create(id=${pizza.id})}">
+            <a class="btn btn-danger" th:href="@{/special-offer/create(id=${pizza.id})}" sec:authorize="hasAuthority('ADMIN')">
                 <i class="fa-solid fa-plus"></i> Aggiungi un'offerta
             </a>
             <div class="mt-4" th:if="${pizza.specialOffers.size() != 0}">
@@ -41,7 +41,7 @@
                             <td th:text="${#temporals.format(offer.startingDate, 'dd/MM/yyyy')}"></td>
                             <td th:text="${#temporals.format(offer.endingDate, 'dd/MM/yyyy')}"></td>
                             <td>
-                                <a class="btn btn-danger" th:href="@{|/special-offer/edit/*{id}|}">
+                                <a class="btn btn-danger" th:href="@{|/special-offer/edit/*{id}|}" sec:authorize="hasAuthority('ADMIN')">
                                     <i class="fa-solid fa-pencil"></i>
                                 </a>
                             </td>
