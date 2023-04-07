@@ -6,3 +6,9 @@ INSERT INTO special_offers (title,  starting_date, ending_date, pizza_id) VALUES
 INSERT INTO ingredients (name) VALUES('Mozzarella');
 INSERT INTO ingredients (name) VALUES('Pomodoro');
 INSERT INTO ingredients (name) VALUES('Olio');
+INSERT INTO users (email, first_name, last_name, password) VALUES('prova@gmail.com', 'Alessio', 'Dileo', '{noop}password');
+INSERT INTO users (email, first_name, last_name, password) VALUES('prova2@gmail.com', 'Pippo', 'Franco','{noop}password');
+INSERT INTO roles (id, name) VALUES(1, 'ADMIN');
+INSERT INTO roles (id, name) VALUES(2, 'USER');
+INSERT into users_roles(user_id, roles_id) VALUES(1, 1);
+INSERT into users_roles(user_id, roles_id) VALUES(2, 2);
